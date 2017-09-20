@@ -3,8 +3,10 @@ pipeline {
 
    options {
       buildDiscarder(logRotator(numToKeepStr:'10'))
+   
    }
 
+   
    stages {
       stage('Build') {
          steps {
@@ -12,5 +14,14 @@ pipeline {
          }
       }
 
+      stage('Development Tests') {
+         when {
+            branch 'development'
+         }
+         steps {
+            echo "Run the development tests!"
+         }
+      }
    }
+   
 }
